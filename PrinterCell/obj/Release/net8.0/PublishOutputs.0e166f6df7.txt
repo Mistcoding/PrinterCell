@@ -1,0 +1,2 @@
+C:\Users\Stefano\source\repos\PrinterCell\PrinterCell\bin\Release\net8.0\publish\emcc-props.json
+C:\Users\Stefano\source\repos\PrinterCell\PrinterCell\bin\Release\net8.0\publish\web.config
