@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "PrinterCell",
   "resources": {
-    "hash": "sha256-U4APuUGltASidFSIPkeuML95JkvFRdQvWCo1l8IlUIc=",
+    "hash": "sha256-HV8OjUfjANWo6dJSV9djMeZYQJaxEwXeS7UNbR7NIR8=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-O/NCYcAN9uPocD7ns7AzF/cqx7f5vL1PTJCQs0vEXyk="
     },
@@ -49,7 +49,7 @@
       "System.Text.Json.wasm": "sha256-WbayhVGwCeC6tFrjiXzNyZbC93kLIuensvvpgZPiK2Q=",
       "System.Text.RegularExpressions.wasm": "sha256-amyl1Zsuf+PHSXqju/cl50LQlTKfUNpDi6hcFh10yrM=",
       "System.Private.CoreLib.wasm": "sha256-4mZO5mX3u3Gx5HCxo46azpSR6uriIWW3U6vvJRV/KAQ=",
-      "PrinterCell.wasm": "sha256-+l492jrT+UxPeD05uJlz/BbXIbpLV8CY7M/08Jjhhnk="
+      "PrinterCell.wasm": "sha256-TWV32jXg4OOcIKugkXEHTAYBZq3QXWtxmtfJkeF75JE="
     }
   },
   "cacheBootResources": true,
