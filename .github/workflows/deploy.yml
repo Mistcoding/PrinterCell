@@ -26,7 +26,7 @@ jobs:
           dotnet-version: "8.0.x"   # Cambia se usi un'altra versione
 
       - name: Publish
-        run: dotnet publish printercell/printercell.csproj -c Release -o build
+        run: dotnet publish PrinterCell/PrinterCell.csproj -c Release -o build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
