@@ -1,0 +1,68 @@
+﻿@page "/Index"
+@inject PrinterCell.Services.IndexedDbService Db
+
+<h3>Gestione Magazzino (IndexedDB)</h3>
+
+<div class="mb-3">
+    <input placeholder="Codice" @bind="nuovo.Codice" />
+    <input placeholder="Descrizione" @bind="nuovo.Descrizione" />
+    <input type="number" placeholder="Quantità" @bind="nuovo.Quantita" />
+    <button @onclick="Aggiungi">Aggiungi</button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Codice</th>
+            <th>Descrizione</th>
+            <th>Quantità</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var art in articoli)
+        {
+            <tr>
+                <td>@art.Id</td>
+                <td>@art.Codice</td>
+                <td>@art.Descrizione</td>
+                <td><input type="number" @bind="art.Quantita" /></td>
+                <td>
+                    <button @onclick="() => Aggiorna(art)">💾</button>
+                    <button @onclick="() => Elimina(art.Id)">🗑️</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<PrinterCell.Models.Articolo> articoli = new();
+    private PrinterCell.Models.Articolo nuovo = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Db.InitAsync();
+        articoli = await Db.GetAllArticoliAsync();
+    }
+
+    private async Task Aggiungi()
+    {
+        await Db.AddArticoloAsync(nuovo);
+        articoli = await Db.GetAllArticoliAsync();
+        nuovo = new();
+    }
+
+    private async Task Aggiorna(PrinterCell.Models.Articolo art)
+    {
+        await Db.UpdateArticoloAsync(art);
+        articoli = await Db.GetAllArticoliAsync();
+    }
+
+    private async Task Elimina(int id)
+    {
+        await Db.DeleteArticoloAsync(id);
+        articoli = await Db.GetAllArticoliAsync();
+    }
+}
