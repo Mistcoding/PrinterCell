@@ -1,7 +1,7 @@
 ﻿using Microsoft.JSInterop;
-using PrinterCell.Models;
+using PrinterCell.Client.Models;
 
-namespace PrinterCell.Services
+namespace PrinterCell.Client.Services
 {
 
     public class IndexedDbService
