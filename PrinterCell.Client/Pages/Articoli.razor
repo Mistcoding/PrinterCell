@@ -1,4 +1,74 @@
-﻿@page "/Index"
+﻿@page "/articoli"
+@using PrinterCell.Models
+@inject PrinterCell.Services.IndexedDbService Db
+@inject NavigationManager Nav
+@inject NavigationManager Nav
+
+<h3>Elenco articoli</h3>
+<div class="mb-3">
+    <button class="btn btn-primary btn-sm" @onclick='() => Nav.NavigateTo("articoli/nuovo")'>
+        + Nuovo articolo
+    </button>
+</div>
+
+@if (articoli is null)
+{
+    <p>Caricamento...</p>
+}
+else if (articoli.Count == 0)
+{
+    <p>Nessun articolo presente.</p>
+}
+else
+{
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th style="width:80px">Id</th>
+                <th style="width:160px">Codice</th>
+                <th>Descrizione</th>
+                <th style="width:140px">Quantità</th>
+                <th style="width:160px">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var art in articoli)
+            {
+                <tr>
+                    <td>@art.Id</td>
+                    <td>@art.Codice</td>
+                    <td>@art.Descrizione</td>
+                    <td>
+                        <input class="form-control form-control-sm" type="number" @bind="art.Quantita" />
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => Elimina(art.Id)">🗑️ Elimina</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Articolo>? articoli;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Db.InitAsync();
+        articoli = await Db.GetAllArticoliAsync();
+    }
+
+    private async Task Elimina(int id)
+    {
+        await Db.DeleteArticoloAsync(id);
+        articoli = await Db.GetAllArticoliAsync(); // ricarico
+        StateHasChanged();
+    }
+}
+
+
+@* @page "/articoli"
 @inject PrinterCell.Services.IndexedDbService Db
 
 <h3>Gestione Magazzino (IndexedDB)</h3>
@@ -66,3 +136,4 @@
         articoli = await Db.GetAllArticoliAsync();
     }
 }
+ *@
