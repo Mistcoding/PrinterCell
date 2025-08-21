@@ -1,5 +1,5 @@
 ﻿using Microsoft.JSInterop;
-using PrinterCell.Client.Models;
+using PrinterCell.Shared.Models;
 
 namespace PrinterCell.Client.Services
 {

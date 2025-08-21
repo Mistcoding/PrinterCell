@@ -1,4 +1,4 @@
-﻿namespace PrinterCell.Client.Models
+﻿namespace PrinterCell.Shared.Models
 {
     public class Articolo
     {
